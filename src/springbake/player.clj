@@ -11,15 +11,12 @@
   ; add x and y coordinates to texture
   )
 
-(defn is-key-pressed? [key-name]
-  `(pcore/key-pressed? key-name))
-
 (defn move [screen entities]
   ; :w -> up
   ; :a -> left
   ; :s -> down
   ; :d -> right
-  ; (is-key-pressed? ...)
+  ; (pcore/key-pressed? ...)
   ; first element of entities is the player
   ; change the coordinates (x, y) of the player
   )

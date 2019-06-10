@@ -14,24 +14,24 @@
               :y      50}
              (player/create "foo"))))))
 
-(deftest move-test
-  (let [entities [{:x 0 :y 0}]]
-    (testing "should move player up"
-      (with-redefs [player/is-key-pressed? (fn [key] (= :w key))]
-        (is (= {:x 0 :y 20}
-               (player/move {} entities)))))
-
-    (testing "should move player down"
-      (with-redefs [player/is-key-pressed? (fn [key] (= :s key))]
-        (is (= {:x 0 :y -20}
-               (player/move {} entities)))))
-
-    (testing "should move player left"
-      (with-redefs [player/is-key-pressed? (fn [key] (= :a key))]
-        (is (= {:x -20 :y 0}
-               (player/move {} entities)))))
-
-    (testing "should move player right"
-      (with-redefs [player/is-key-pressed? (fn [key] (= :d key))]
-        (is (= {:x 20 :y 0}
-               (player/move {} entities)))))))
+;(deftest move-test
+;  (let [entities [{:x 0 :y 0}]]
+;    (testing "should move player up"
+;      (with-redefs [player/is-key-pressed? (fn [key] (= :w key))]
+;        (is (= {:x 0 :y 20}
+;               (player/move {} entities)))))
+;
+;    (testing "should move player down"
+;      (with-redefs [player/is-key-pressed? (fn [key] (= :s key))]
+;        (is (= {:x 0 :y -20}
+;               (player/move {} entities)))))
+;
+;    (testing "should move player left"
+;      (with-redefs [player/is-key-pressed? (fn [key] (= :a key))]
+;        (is (= {:x -20 :y 0}
+;               (player/move {} entities)))))
+;
+;    (testing "should move player right"
+;      (with-redefs [player/is-key-pressed? (fn [key] (= :d key))]
+;        (is (= {:x 20 :y 0}
+;               (player/move {} entities)))))))
