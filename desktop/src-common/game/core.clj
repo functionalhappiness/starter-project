@@ -15,6 +15,14 @@
   (when (> y-val 0)
     (update (first entities) :y - 5)))
 
+(defn move [screen entities]
+  (cond
+    (key-pressed? :space) (update (first entities) :y + 70)
+    (key-pressed? :w) (update (first entities) :y + 70)
+    (key-pressed? :a) (update (first entities) :x - 20)
+    (key-pressed? :s) (update (first entities) :y - 20)
+    (key-pressed? :d) (update (first entities) :x + 20)))
+
 (defscreen main-screen
            :on-show
            (fn [screen entities]
@@ -28,14 +36,7 @@
              (pull-player-down entities))
 
            :on-key-down
-           (fn [screen entities]
-             (println "Key pressed: " (screen :key))
-             (cond
-               (key-pressed? :space) (update (first entities) :y + 70)
-               (key-pressed? :w) (update (first entities) :y + 70)
-               (key-pressed? :a) (update (first entities) :x - 20)
-               (key-pressed? :s) (update (first entities) :y - 20)
-               (key-pressed? :d) (update (first entities) :x + 20))))
+           move)
 
 
 (defgame game-game
