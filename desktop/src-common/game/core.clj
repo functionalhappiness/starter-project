@@ -6,7 +6,7 @@
 ; first task
 (defn create-player [texture-path]
   ; use resource to create texture
-  ; add coordinates to texture
+  ; add x and y coordinates to texture
   )
 
 (defn pull-player-down
