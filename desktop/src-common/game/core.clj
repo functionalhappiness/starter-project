@@ -4,10 +4,10 @@
             [play-clj.g2d :refer :all]))
 
 ; first task
-(defn create-player
-  [texture-name]
-  (assoc (texture texture-name) :x 0 :y 50
-                                :width 48 :height 48))
+(defn create-player [texture-path]
+  ; use resource to create texture
+  ; add coordinates to texture
+  )
 
 (defn pull-player-down
   [entities]
@@ -23,6 +23,10 @@
     (key-pressed? :s) (update (first entities) :y - 20)
     (key-pressed? :d) (update (first entities) :x + 20)))
 
+(defn prepare-stage [screen entities player-texture-path]
+  (update! screen :renderer (stage))
+  (create-player player-texture-path))
+
 (defscreen main-screen
            :on-show
            (fn [screen entities]
@@ -37,7 +41,6 @@
 
            :on-key-down
            move)
-
 
 (defgame game-game
          :on-create
