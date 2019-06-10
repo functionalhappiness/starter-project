@@ -21,3 +21,9 @@ lein repl
 ```bash
 lein test
 ```
+
+## Learn more
+If you want to learn more about clojure you can always consult:
+* [the official clojure documentation](https://clojuredocs.org/)
+* [read the slides of clojure bridge](https://clojurebridge.org/curriculum/)
+* [join a clojure meetup](https://www.meetup.com/de-DE/topics/clojure/de/)
