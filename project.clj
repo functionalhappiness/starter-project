@@ -14,7 +14,7 @@
                  [org.clojure/clojure "1.7.0"]
                  [play-clj "1.0.0"]]
   
-  :source-paths ["src" "src-common"]
+  :source-paths ["src"]
   :javac-options ["-target" "1.6" "-source" "1.6" "-Xlint:-options"]
-  :aot [game.core.desktop-launcher]
-  :main game.core.desktop-launcher)
+  :aot [springbake.launcher]
+  :main springbake.launcher)

@@ -1,4 +1,4 @@
-(ns game.core
+(ns springbake.core
   (:require [play-clj.core :refer :all]
             [play-clj.ui :refer :all]
             [play-clj.g2d :refer :all]))
@@ -9,7 +9,7 @@
   ; add x and y coordinates to texture
   )
 
-(defn pull-player-down
+#_(defn pull-player-down
   [entities]
   (def y-val (get (first entities) :y))
   (when (> y-val 0)
@@ -36,13 +36,12 @@
            :on-render
            (fn [screen entities]
              (clear!)
-             (render! screen entities)
-             (pull-player-down entities))
+             (render! screen entities))
 
            :on-key-down
            move)
 
-(defgame game-game
+(defgame springbake
          :on-create
          (fn [this]
            (set-screen! this main-screen)))

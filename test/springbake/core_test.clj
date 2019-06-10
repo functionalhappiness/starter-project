@@ -1,6 +1,6 @@
-(ns game.core.core_test
+(ns springbake.core_test
   (:require [clojure.test :refer :all]
-            [game.core :as core]
+            [springbake.core :as core]
             [play-clj.core :as pcore]))
 
 (deftest move-player-test
@@ -28,5 +28,4 @@
 
         (is (= 1
                @call-atom))
-        )))
-  )
+        ))))
