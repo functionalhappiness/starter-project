@@ -18,14 +18,15 @@
                                :set-play-mode (play-mode :loop-pingpong))
          :width 1
          :height (/ 26 18)
+         :x-velocity 0
+         :y-velocity 0
          :x 20
          :y 10
          :me? true
          :can-jump? false
          :direction :right))
 
-(defn move
-  [{:keys [delta-time]} {:keys [x y can-jump?] :as entity}]
+(defn move [{:keys [delta-time]} {:keys [x y can-jump?] :as entity}]
   (let [x-velocity (u/get-x-velocity entity)
         y-velocity (+ (u/get-y-velocity entity) u/gravity)
         x-change (* x-velocity delta-time)
