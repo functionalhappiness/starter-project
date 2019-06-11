@@ -6,26 +6,28 @@
 
 (defn create
   [stand jump & walk]
-  (assoc stand
-    :stand-right stand
-    :stand-left (texture stand :flip true false)
-    :jump-right jump
-    :jump-left (texture jump :flip true false)
-    :walk-right (animation u/duration
-                           walk
-                           :set-play-mode (play-mode :loop-pingpong))
-    :walk-left (animation u/duration
-                          (map #(texture % :flip true false) walk)
-                          :set-play-mode (play-mode :loop-pingpong))
-    :width 1
-    :height (/ 26 18)
-    :x-velocity 0
-    :y-velocity 0
-    :x 20
-    :y 10
-    :me? true
-    :can-jump? false
-    :direction :right))
+  (merge
+    (assoc stand
+      :stand-right stand
+      :stand-left (texture stand :flip true false)
+      :jump-right jump
+      :jump-left (texture jump :flip true false)
+      :walk-right (animation u/duration
+                             walk
+                             :set-play-mode (play-mode :loop-pingpong))
+      :walk-left (animation u/duration
+                            (map #(texture % :flip true false) walk)
+                            :set-play-mode (play-mode :loop-pingpong))
+      :width 0
+      :height 0
+      :x-velocity 0
+      :y-velocity 0
+      :x 0
+      :y 0
+      :me? true
+      :can-jump? false
+      :direction :right)
+    (p/create)))
 
 (defn jump-with-velocity [{:keys [y-velocity] :as entity}]
   (let [jump-y (p/jump entity)]

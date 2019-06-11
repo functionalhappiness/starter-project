@@ -15,3 +15,9 @@
   (cond
     (and (can-jump? entity) (key-pressed? :dpad-up)) 56
     :else 0))
+
+(defn create []
+  {:x      20
+   :y      10
+   :width  1
+   :height 1.5})
