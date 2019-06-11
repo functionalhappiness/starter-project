@@ -12,13 +12,10 @@
   (:can-jump? entity))
 
 (defn jump [entity]
-  (if
-    (and (can-jump? entity) (key-pressed? :dpad-up))
-    56
-    0))
+  ; :dpad-up -> 55
+  ; all other cases 0
+  )
 
 (defn create []
-  {:x      20
-   :y      10
-   :width  1
-   :height 1.5})
+  ; return a map with attributes
+  )
