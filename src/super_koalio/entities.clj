@@ -78,5 +78,8 @@
            (when (u/get-touching-tile screen entity-x "walls")
              {:x-velocity 0 :x-change 0 :x old-x})
            (when-let [tile (u/get-touching-tile screen entity-y "walls")]
-             {:y-velocity 0 :y-change 0 :y old-y
-              :can-jump?  (not up?) :to-destroy (when up? tile)}))))
+             {:y-velocity 0
+              :y-change   0
+              :y          old-y
+              :can-jump?  (not up?)
+              :to-destroy (when up? tile)}))))

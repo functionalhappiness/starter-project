@@ -7,7 +7,11 @@
     (key-pressed? :dpad-right) 14
     :else 0))
 
-(defn jump [{:keys [can-jump?]}]
+(defn can-jump? [entity]
+  "True when player can jump, false otherwise"
+  (:can-jump? entity))
+
+(defn jump [entity]
   (cond
-    (and can-jump? (key-pressed? :dpad-up)) 56
+    (and (can-jump? entity) (key-pressed? :dpad-up)) 56
     :else 0))
