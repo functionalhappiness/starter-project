@@ -27,8 +27,7 @@
                    tiles (texture! sheet :split 18 26)
                    player-images (for [col [0 1 2 3 4]]
                                    (texture (aget tiles 0 col)))]
-               (apply e/create player-images))
-             )
+               (apply e/create player-images)))
 
            :on-render
            (fn [screen entities]

@@ -7,40 +7,46 @@
 (defn create
   [stand jump & walk]
   (assoc stand
-         :stand-right stand
-         :stand-left (texture stand :flip true false)
-         :jump-right jump
-         :jump-left (texture jump :flip true false)
-         :walk-right (animation u/duration
-                                walk
-                                :set-play-mode (play-mode :loop-pingpong))
-         :walk-left (animation u/duration
-                               (map #(texture % :flip true false) walk)
-                               :set-play-mode (play-mode :loop-pingpong))
-         :width 1
-         :height (/ 26 18)
-         :x-velocity 0
-         :y-velocity 0
-         :x 20
-         :y 10
-         :me? true
-         :can-jump? false
-         :direction :right))
+    :stand-right stand
+    :stand-left (texture stand :flip true false)
+    :jump-right jump
+    :jump-left (texture jump :flip true false)
+    :walk-right (animation u/duration
+                           walk
+                           :set-play-mode (play-mode :loop-pingpong))
+    :walk-left (animation u/duration
+                          (map #(texture % :flip true false) walk)
+                          :set-play-mode (play-mode :loop-pingpong))
+    :width 1
+    :height (/ 26 18)
+    :x-velocity 0
+    :y-velocity 0
+    :x 20
+    :y 10
+    :me? true
+    :can-jump? false
+    :direction :right))
+
+(defn jump-with-velocity [{:keys [y-velocity] :as entity}]
+  (let [jump-y (p/jump entity)]
+    (if (= 0 jump-y)
+      y-velocity
+      jump-y)))
 
 (defn move [{:keys [delta-time]} {:keys [x y can-jump?] :as entity}]
   (let [x-velocity (p/move-sideways)
-        y-velocity (+ (u/get-y-velocity entity) u/gravity)
+        y-velocity (+ (jump-with-velocity entity) -2.5)
         x-change (* x-velocity delta-time)
         y-change (* y-velocity delta-time)]
     (if (or (not= 0 x-change) (not= 0 y-change))
       (assoc entity
-             :x-velocity (u/decelerate x-velocity)
-             :y-velocity (u/decelerate y-velocity)
-             :x-change x-change
-             :y-change y-change
-             :x (+ x x-change)
-             :y (+ y y-change)
-             :can-jump? (if (> y-velocity 0) false can-jump?))
+        :x-velocity (u/decelerate x-velocity)
+        :y-velocity (u/decelerate y-velocity)
+        :x-change x-change
+        :y-change y-change
+        :x (+ x x-change)
+        :y (+ y y-change)
+        :can-jump? (if (> y-velocity 0) false can-jump?))
       entity)))
 
 (defn animate
@@ -73,4 +79,4 @@
              {:x-velocity 0 :x-change 0 :x old-x})
            (when-let [tile (u/get-touching-tile screen entity-y "walls")]
              {:y-velocity 0 :y-change 0 :y old-y
-              :can-jump? (not up?) :to-destroy (when up? tile)}))))
+              :can-jump?  (not up?) :to-destroy (when up? tile)}))))
