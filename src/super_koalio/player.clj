@@ -2,10 +2,10 @@
   (:require [play-clj.core :refer :all]))
 
 (defn move-sideways []
-  (cond
-    (key-pressed? :dpad-left) -14
-    (key-pressed? :dpad-right) 14
-    :else 0))
+  ; :dpad-left -> -15
+  ; :dpad-right -> 15
+  ; (key-pressed? ...)
+  )
 
 (defn can-jump? [entity]
   "True when player can jump, false otherwise"
