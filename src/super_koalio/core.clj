@@ -5,10 +5,9 @@
             [super-koalio.entities :as e]
             [super-koalio.utils :as u]))
 
-(declare super-koalio main-screen text-screen)
+(declare super-koalio main-screen)
 
-(defn update-screen!
-  [screen entities]
+(defn update-screen! [screen entities]
   (doseq [{:keys [x y height me? to-destroy]} entities]
     (when me?
       (position! screen x (/ u/vertical-tiles 2))
@@ -34,40 +33,18 @@
            :on-render
            (fn [screen entities]
              (clear! 0.5 0.5 1 1)
-             (some->> (if (or (key-pressed? :space) (u/touched? :center))
-                        (rewind! screen 2)
-                        (map (fn [entity]
-                               (->> entity
-                                    (e/move screen)
-                                    (e/prevent-move screen)
-                                    (e/animate screen)))
-                             entities))
+             (some->> (map (fn [entity]
+                             (->> entity
+                                  (e/move screen)
+                                  (e/prevent-move screen)
+                                  (e/animate screen)))
+                           entities)
                       (render! screen)
                       (update-screen! screen)))
 
            :on-resize
            (fn [{:keys [width height] :as screen} entities]
              (height! screen u/vertical-tiles)))
-
-#_(defscreen text-screen
-             :on-show
-             (fn [screen entities]
-               (update! screen :camera (orthographic) :renderer (stage))
-               (assoc (label "0" (color :white))
-                 :id :fps
-                 :x 5))
-
-             :on-render
-             (fn [screen entities]
-               (->> (for [entity entities]
-                      (case (:id entity)
-                        :fps (doto entity (label! :set-text (str (game :fps))))
-                        entity))
-                    (render! screen)))
-
-             :on-resize
-             (fn [screen entities]
-               (height! screen 300)))
 
 (defgame super-koalio
          :on-create

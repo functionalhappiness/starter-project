@@ -18,8 +18,6 @@
                                :set-play-mode (play-mode :loop-pingpong))
          :width 1
          :height (/ 26 18)
-         :x-velocity 0
-         :y-velocity 0
          :x 20
          :y 10
          :me? true
