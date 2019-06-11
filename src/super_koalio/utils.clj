@@ -29,18 +29,6 @@
                       (< (/ (game :height) 3) (game :y) (* (game :height) (/ 2 3))))
          false)))
 
-(defn get-x-velocity
-  [{:keys [me? x-velocity]}]
-  (if me?
-    (cond
-      (or (key-pressed? :dpad-left) (touched? :left))
-      (* -1 max-velocity)
-      (or (key-pressed? :dpad-right) (touched? :right))
-      max-velocity
-      :else
-      x-velocity)
-    x-velocity))
-
 (defn get-y-velocity
   [{:keys [me? y-velocity can-jump?]}]
   (if me?

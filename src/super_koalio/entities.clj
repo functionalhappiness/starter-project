@@ -1,7 +1,8 @@
 (ns super-koalio.entities
   (:require [play-clj.core :refer :all]
             [play-clj.g2d :refer :all]
-            [super-koalio.utils :as u]))
+            [super-koalio.utils :as u]
+            [super-koalio.player :as p]))
 
 (defn create
   [stand jump & walk]
@@ -27,7 +28,7 @@
          :direction :right))
 
 (defn move [{:keys [delta-time]} {:keys [x y can-jump?] :as entity}]
-  (let [x-velocity (u/get-x-velocity entity)
+  (let [x-velocity (p/move-sideways)
         y-velocity (+ (u/get-y-velocity entity) u/gravity)
         x-change (* x-velocity delta-time)
         y-change (* y-velocity delta-time)]
