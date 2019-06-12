@@ -5,7 +5,7 @@
   ; :dpad-left -> -15
   ; :dpad-right -> 15
   ; (key-pressed? ...)
-  )
+  0)
 
 (defn can-jump? [entity]
   "True when player can jump, false otherwise"
@@ -14,7 +14,7 @@
 (defn jump [entity]
   ; :dpad-up -> 55
   ; all other cases 0
-  )
+  0)
 
 (defn create []
   ; return a map with attributes
